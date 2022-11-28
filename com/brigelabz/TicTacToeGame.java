@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class TicTacToeGame {
     static  char[] arr = {49,50,51,52,53,54,55,56,57,58};
     static int turn=2;
-    static String loop = "start";
     static  int num;
     static int count = 0 ;
     public static void main(String[] args) {
@@ -57,49 +56,81 @@ public class TicTacToeGame {
     }
     public static void makeMove(char player,char comp){
         Scanner sc = new Scanner(System.in);
+        // This is player logic
         if ( turn%2==0){
             System.out.println(" player enter your position number in between 1 to 9 ");
             int num = sc.nextInt();
-            if(!checkDuplicate(num-1,player)){
+            if(arr[num-1]=='X' || arr[num-1]=='O'){
                 System.out.println("This position is not empty");
             }else {
                 checkDuplicate(num-1,player);
             }
-        }else {
+        }
+        //this is computer logic
+        else {
             Random random = new Random();
             num = random.nextInt(9) + 1;
-            if(!checkDuplicate(num-1,comp)) {
+            if(arr[num-1]=='X' || arr[num-1]=='O') {
                 // System.out.println("This position is not empty");
             }else {
+                // check and win computer
                 if (arr[1] == 'O' && arr[2]=='O' || arr[3]=='O'&& arr[6]=='O' || arr[4]=='O' && arr[8]=='O') {
                     checkDuplicate(0,comp);
                 }
-                else if (arr[0] == 'O'&& arr[2]=='O' || arr[4]=='O' && arr[7]!='X'){
-                    checkDuplicate(1,comp);
+                else if (arr[0] == 'O'&& arr[2]=='O' || arr[4]=='O' && arr[7]=='O'){
+                    if(arr[1]!='X')checkDuplicate(1,comp);
                 }else if (arr[0] == 'O'&& arr[1]=='O' || arr[4]=='O'&& arr[6]=='O' || arr[5]=='O' && arr[8]=='O') {
-                    checkDuplicate(2,comp);
+                    if(arr[2]!='X')checkDuplicate(2,comp);
                 }
                 else if (arr[0] == 'O'&& arr[6]=='O'|| arr[4] == 'O'&& arr[5]=='O' ) {
-                    checkDuplicate(3,comp);
+                    if(arr[3]!='X')checkDuplicate(3,comp);
                 }else if (arr[3] == 'O'&& arr[5]=='O' || arr[1] == 'O'&& arr[7]=='O' || arr[0] == 'O'&& arr[8]=='O'
                         || arr[2] == 'O'&& arr[6]=='O') {
-                    checkDuplicate(4,comp);
+                    if(arr[4]!='X')checkDuplicate(4,comp);
                 }else if (arr[2] == 'O'&& arr[8]=='O' || arr[3] == 'O'&& arr[4]=='O' ) {
-                    checkDuplicate(5,comp);
+                    if(arr[5]!='X')checkDuplicate(5,comp);
                 }else if (arr[0] == 'O'&& arr[3]=='O' || arr[7]=='O'&& arr[8]=='O' || arr[4]=='O' && arr[2]=='O') {
-                    checkDuplicate(6,comp);
+                    if(arr[6]!='X')checkDuplicate(6,comp);
                 }else if (arr[6] == 'O'&& arr[8]=='O' || arr[1] == 'O'&& arr[4]=='O') {
-                    checkDuplicate(7,comp);
+                    if(arr[7]!='X')checkDuplicate(7,comp);
                 }else if (arr[6] == 'O'&& arr[7]=='O' || arr[2]=='O'&& arr[5]=='O' || arr[0]=='O' && arr[4]=='O') {
-                    checkDuplicate(8,comp);
+                   if(arr[8]!='X') checkDuplicate(8,comp);
+                }
+
+                //block player
+
+                else if (arr[1] == 'X' && arr[2]=='X' || arr[3]=='X'&& arr[6]=='X' || arr[4]=='X' && arr[8]=='X') {
+                    if(arr[0]!='O')checkDuplicate(0,comp);
+                }
+                else if (arr[0] == 'X'&& arr[2]=='X' || arr[4]=='X' && arr[7]!='X'){
+                    if(arr[1]!='O')checkDuplicate(1,comp);
+                }else if (arr[0] == 'X'&& arr[1]=='X' || arr[4]=='X'&& arr[6]=='X' || arr[5]=='X' && arr[8]=='X') {
+                    if(arr[2]!='O')checkDuplicate(2,comp);
+                }
+                else if (arr[0] == 'X'&& arr[6]=='X'|| arr[4] == 'X'&& arr[5]=='X' ) {
+                    if(arr[3]!='O')checkDuplicate(3,comp);
+                }else if (arr[3] == 'X'&& arr[5]=='X' || arr[1] == 'X'&& arr[7]=='X' || arr[0] == 'X'&& arr[8]=='X'
+                        || arr[2] == 'X'&& arr[6]=='X') {
+                    if(arr[4]!='O')checkDuplicate(4,comp);
+                }else if (arr[2] == 'X'&& arr[8]=='X' || arr[3] == 'X'&& arr[4]=='X' ) {
+                    if(arr[5]!='O')checkDuplicate(5,comp);
+                }else if (arr[0] == 'X'&& arr[3]=='X' || arr[7]=='X'&& arr[8]=='X' || arr[4]=='X' && arr[2]=='X') {
+                    if(arr[6]!='O')checkDuplicate(6,comp);
+                }else if (arr[6] == 'X'&& arr[8]=='X' || arr[1] == 'X'&& arr[4]=='X') {
+                    if(arr[7]!='O')checkDuplicate(7,comp);
+                }else if (arr[6] == 'X'&& arr[7]=='X' || arr[2]=='X'&& arr[5]=='X' || arr[0]=='X' && arr[4]=='X') {
+                    if(arr[8]!='O')checkDuplicate(8,comp);
                 }
                 else {
                     checkDuplicate(num-1,comp);
                 }
+
             }
+
         }
     }
     public static boolean checkDuplicate(int p,char choice){
+
         if(arr[p]=='X' || arr[p]=='O'){
             return false;
         }else{
