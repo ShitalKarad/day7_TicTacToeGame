@@ -3,21 +3,21 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
-            static  char[] arr = {49,50,51,52,53,54,55,56,57,58};
-            static int turn=2;
-            static  int num;
-            static int count = 0 ;
-            static char player = 'A';
-           static  char comp = 'A';
-            public static void main(String[] args) {
-                System.out.println("Welcome in tic tac toy ");
-                createEmptyBoard();
-                allowPlayer();
-            }
-            public static void createEmptyBoard(){
+    static  char[] arr = {49,50,51,52,53,54,55,56,57,58};
+    static int turn=2;
+    static  int num;
+    static int count = 0 ;
+    static char player = 'A';
+    static  char comp = 'A';
+    public static void main(String[] args) {
+        System.out.println("Welcome in tic tac toy ");
+        createEmptyBoard();
+        allowPlayer();
+    }
+    public static void createEmptyBoard(){
 
-                System.out.println(" ____________");
-            for (int i = 1; i <=9; i++){
+        System.out.println(" ____________");
+        for (int i = 1; i <=9; i++){
             System.out.print("|___");
             if (i % 3 == 0) {
                 System.out.println("|");
@@ -106,7 +106,7 @@ public class TicTacToeGame {
 
                 else if (arr[1] == 'X' && arr[2]=='X' && arr[0] !='O' || arr[3]=='X'&& arr[6]=='X' && arr[0] !='O'
                         || arr[4]=='X' && arr[8]=='X' && arr[0] !='O') {
-                   checkDuplicate(0,comp);
+                    checkDuplicate(0,comp);
                 }
                 else if (arr[0] == 'X'&& arr[2]=='X' && arr[1] !='O'|| arr[4]=='X' && arr[7]!='X'&& arr[1] !='O'){
                     checkDuplicate(1,comp);
@@ -202,7 +202,7 @@ public class TicTacToeGame {
     public static void playAgain(){
         System.out.println(" play the game once again then press 1 && do not play again then press 2");
         Scanner sc = new Scanner(System.in);
-       int option = sc.nextInt();
+        int option = sc.nextInt();
         if ( option == 1 ){
             System.out.println("Start the game ");
             createEmptyBoard();
